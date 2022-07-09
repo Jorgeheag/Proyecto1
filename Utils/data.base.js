@@ -1,4 +1,4 @@
-const { DataTypes,Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
@@ -13,6 +13,6 @@ const db = new Sequelize({
 	
 });
 
-module.exports = { DataTypes, db };
+module.exports = { db , DataTypes };
 
 //revisar bien
