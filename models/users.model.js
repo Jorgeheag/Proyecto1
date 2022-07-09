@@ -1,23 +1,24 @@
-const {db , DataTypes } = require('../utils/data.base');
+const { db, DataTypes } = require('../utils/database.util');
 
 
-const Restaurants = db.define('restaurant', {
+const User = db.define('user', {
 	id: {
 		primaryKey: true,
 		type: DataTypes.INTEGER,
 		autoIncrement: true,
 		allowNull: false,
 	},
-    name: {
+	name: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	address: {
+	email: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		unique: true,
 	},
-    rating: {
-		type: DataTypes.INTEGER,
+	password: {
+		type: DataTypes.STRING,
 		allowNull: false,
 	},
 	status: {
@@ -25,6 +26,12 @@ const Restaurants = db.define('restaurant', {
 		allowNull: false,
 		defaultValue: 'active',
 	},
+    role: {
+		type: DataTypes.STRING,
+		allowNull: false,
+		defaultValue: 'normal',
+	},
+
 });
 
-module.exports = { Restaurants };
+module.exports = User ;
