@@ -1,15 +1,15 @@
 // Models
 const { Meals } = require('../models/meals.model');
-//const { Movie } = require('../models/movie.model');
+const { Restaurants } = require('../models/restaurants.model');
 
 // Utils
-//const { catchAsync } = require('../util/catchAsync');
-//const { AppError } = require('../util/appError');
+const { catchAsync } = require('../Utils/catchAsync');
+const { AppError } = require('../Utils/app.error');
 
 exports.getAllMeals = catchAsync(async (req, res, next) => {
 	const meals = await Meals.findAll({
 		where: { status: 'active' },
-		include: [{ model: /*Movie*/ }], //necesita el otro modelo
+		include: [{ model: Restaurants }], 
 	});
 
 	res.status(200).json({
