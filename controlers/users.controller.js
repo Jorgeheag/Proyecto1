@@ -6,6 +6,8 @@ const { Restaurants } = require('../models/restaurants.model');
 // Utils
 const { catchAsync } = require('../Utils/catchAsync');
 const { AppError } = require('../Utils/app.error');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 
 const getAllUsers = catchAsync(async (req, res, next) => {
 	const users = await User.findAll({
