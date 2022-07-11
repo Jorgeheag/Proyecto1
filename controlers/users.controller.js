@@ -7,7 +7,7 @@ const { Restaurants } = require('../models/restaurants.model');
 const { catchAsync } = require('../Utils/catchAsync');
 const { AppError } = require('../Utils/app.error');
 
-exports.getAllUsers = catchAsync(async (req, res, next) => {
+const getAllUsers = catchAsync(async (req, res, next) => {
 	const users = await User.findAll({
 		where: { status: 'active' },
 		include: [{ model: Restaurants }], //revisar que modelo incluir
@@ -19,7 +19,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 	});
 });
 
-exports.getUsersById = catchAsync(async (req, res, next) => {
+const getUsersById = catchAsync(async (req, res, next) => {
 	const { user } = req;
 
 	res.status(200).json({
@@ -28,7 +28,7 @@ exports.getUsersById = catchAsync(async (req, res, next) => {
 	});
 });
 
-exports.createUser = catchAsync(async (req, res, next) => {
+const createUser = catchAsync(async (req, res, next) => {
 	const { name, email, password } = req.body;
 
 	const newUser = await User.create({
@@ -44,7 +44,7 @@ exports.createUser = catchAsync(async (req, res, next) => {
 	});
 });
 
-exports.updateUser = catchAsync(async (req, res, next) => {
+const updateUser = catchAsync(async (req, res, next) => {
 	const { user } = req;
 	const { name, email } = req.body;
 
@@ -53,7 +53,7 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 	res.status(204).json({ status: 'success' });
 });
 
-exports.disableUser = catchAsync(async (req, res, next) => {
+const disableUser = catchAsync(async (req, res, next) => {
 	const { id } = req.params;
 
     const user = await User.findOne({ where: { id } });
@@ -103,3 +103,12 @@ const login = catchAsync(async (req, res, next) => {
         token,
     });
 });
+
+module.exports = {
+	getAllUsers,
+	getUsersById, 
+	createUser, 
+	updateUser,
+	disableUser,
+	login
+}
