@@ -20,11 +20,19 @@ const { Meals } = require('../models/meals.model');
 });
 
  const getOrdersById = catchAsync(async (req, res, next) => {
-	const { order } = req;
+	const { id } = req.params; // revisar ordenes de los usuarios 
+
+	const orders = await Orders.findOne({ where: { id } });
+
+	if (!user) {
+		return res.status(404).json({
+			status: 'Order not found',
+		});
+	}
 
 	res.status(200).json({
 		status: 'success',
-		data: { order }, //hay que traer todas las ordenes de los usuarios
+		orders,
 	});
 });
 
