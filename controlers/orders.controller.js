@@ -43,11 +43,19 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 	});
 });
 
-exports.completeOrder = catchAsync(async (req, res, next) => {
+const updateOrders = catchAsync(async (req, res, next) => {
+	const { order } = req;
+	const { status} = req.body;
+
+	await order.update({ status});
+
+	res.status(204).json({ status: 'completed' });
+});
+
+const deleteOrders = catchAsync(async (req, res, next) => {
 	const { order } = req;
 
-
-	await order.update({ status: 'complete' });
+	await order.update({ status: 'deleted' });
 
 	res.status(204).json({ status: 'success' });
 });
