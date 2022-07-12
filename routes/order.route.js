@@ -2,13 +2,13 @@ const express = require('express');
 
 // Controllers
 const {
-	getAllUsers,
-	getUsersById, 
-	createUser, 
-	updateUser,
-	disableUser,
-	login
-} = require('../controllers/user.controller');
+	getAllOrders,
+	getOrdersById, 
+	createOrder, 
+	updateOrders,
+	deleteOrders,
+	cancelledOrder
+} = require('../controlers/orders.controller');
 
 
 
