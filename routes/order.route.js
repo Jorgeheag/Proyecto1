@@ -2,11 +2,9 @@ const express = require('express');
 
 // Controllers
 const {
-	getAllOrders,
 	getOrdersById, 
 	createOrder, 
 	updateOrders,
-	deleteOrders,
 	cancelledOrder
 } = require('../controlers/orders.controller');
 
@@ -15,25 +13,23 @@ const {
 const {protectSession, protectUserAccount}= require('../midlewares/auth.middleware')
 const {createUserValidators}= require('../midlewares/validators.middleware')
 const {userExists}= require('../midlewares/users.middleware')
+const {meatExist, totalprice} = require('../midlewares/order.diddleware')
+
+
+const orderRoute = express.Router();
 
 
 
-const userRouter = express.Router();
+orderRoute.use(protectSession)
 
-userRouter.post('/login', login);
+orderRoute.post('/', meatExist, totalprice, createOrder);
 
-userRouter.post('/signup', createUserValidators, createUser);
+orderRoute.get('/me', getOrdersById);
 
+orderRoute.patch('/:id',userExists, protectUserAccount, updateOrders);
 
-userRouter.use(protectSession)
-
-userRouter.get('/orders', getAllUsers);
-userRouter.get('/orders/:id', getUsersById);
-
-userRouter.patch('/:id',userExists, protectUserAccount, updateUser);
-
-userRouter.delete('/:id',userExists, protectUserAccount, disableUser);
+orderRoute.delete('/:id',userExists, protectUserAccount, cancelledOrder);
 
 
 
-module.exports = { userRouter };
+module.exports = { orderRoute };

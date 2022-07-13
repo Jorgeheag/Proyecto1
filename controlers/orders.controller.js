@@ -38,12 +38,15 @@ const { Meals } = require('../models/meals.model');
 
  const createOrder = catchAsync(async (req, res, next) => {
 	const { quantity, mealId } = req.body;
+	const {totalPrice}= req
 
 	const newOrder = await Orders.create({
 		quantity,
 		mealId,
-		
+		totalPrice
 	});
+
+
 
 	res.status(200).json({
 		status: 'success',
