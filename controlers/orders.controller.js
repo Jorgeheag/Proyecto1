@@ -7,7 +7,7 @@ const { catchAsync } = require('../Utils/catchAsync');
 const { AppError } = require('../Utils/app.error');
 const { Meals } = require('../models/meals.model');
 
- const getAllOrders = catchAsync(async (req, res, next) => {
+ /*const getAllOrders = catchAsync(async (req, res, next) => {
 	const orders = await Orders.findAll({
 		where: { status: 'active' },
 		include: [{ model: Meals }], //revisar el modelo a unir
@@ -18,7 +18,7 @@ const { Meals } = require('../models/meals.model');
 		data: { orders },
 	});
 });
-
+*/
  const getOrdersById = catchAsync(async (req, res, next) => {
 	const { id } = req.params; // revisar ordenes de los usuarios 
 
@@ -63,14 +63,14 @@ const updateOrders = catchAsync(async (req, res, next) => {
 	res.status(204).json({ status: 'completed' });
 });
 
-const deleteOrders = catchAsync(async (req, res, next) => {
+/*const deleteOrders = catchAsync(async (req, res, next) => {
 	const { order } = req;
 
 	await order.update({ status: 'deleted' });
 
 	res.status(204).json({ status: 'success' });
 });
-
+*/
 
  const cancelledOrder = catchAsync(async (req, res, next) => {
 	const { order } = req;
@@ -83,10 +83,10 @@ const deleteOrders = catchAsync(async (req, res, next) => {
 
 
 module.exports = {
-	getAllOrders,
+	//getAllOrders,
 	getOrdersById, 
 	createOrder, 
 	updateOrders,
-	deleteOrders,
+	//deleteOrders,
 	cancelledOrder
 }

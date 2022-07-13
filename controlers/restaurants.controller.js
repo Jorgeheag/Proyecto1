@@ -69,7 +69,7 @@ const deleteRestaurant = catchAsync(async (req, res, next) => {
 
 const createComment = catchAsync(async(req, res, next)=>{
 	const { comment, rating } = req.body;
- //porbe el id del restaurante 
+ //poner el id del restaurante 
 	const newCommet = await Reviews.create({
 		comment,
 		rating
