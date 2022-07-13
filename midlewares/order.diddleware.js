@@ -7,12 +7,13 @@ const { AppError } = require('../utils/appError');
 const { catchAsync } = require('../utils/catchAsync');
 
 const totalprice = catchAsync(async (req, res, next) => {
-	
-	const totalprice =  req.body * Orders.quantity
+	const { quantity } = req.body
+	const {price}=  req.meat
 
-	Orders.totalPrice= totalprice
 
-	req.totalPrice = totalPrice;
+	const totalprice =  price * quantity
+
+	req.totalPrice = totalprice;
 	next();
 });
 
@@ -20,9 +21,9 @@ const totalprice = catchAsync(async (req, res, next) => {
 
 
 const meatExist= catchAsync(async (req, res, next) => {
-	const { id } = req.params;
+	const { mealId } = req.body;
 
-	const meat = await Meals.findOne({ where: { id } });
+	const meat = await Meals.findOne({ where: { id: mealId } });
 
 	if (!meat) {
 		return next(new AppError('meat not found', 404));
@@ -32,4 +33,5 @@ const meatExist= catchAsync(async (req, res, next) => {
 	next();
 });
 
-module.exports = { meatExist };
+module.exports = { meatExist,
+					totalprice };

@@ -13,7 +13,7 @@ const {
 const {protectSession, protectUserAccount}= require('../midlewares/auth.middleware')
 const {createUserValidators}= require('../midlewares/validators.middleware')
 const {userExists}= require('../midlewares/users.middleware')
-const {meatExist} = require('../midlewares/order.diddleware')
+const {meatExist, totalprice} = require('../midlewares/order.diddleware')
 
 
 const orderRoute = express.Router();
@@ -22,7 +22,7 @@ const orderRoute = express.Router();
 
 orderRoute.use(protectSession)
 
-orderRoute.post('/', meatExist, createOrder);
+orderRoute.post('/', meatExist, totalprice, createOrder);
 
 orderRoute.get('/me', getOrdersById);
 

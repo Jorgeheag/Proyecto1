@@ -45,6 +45,28 @@ const protectSession = catchAsync(async (req, res, next) => {
 	next();
 });
 
+
+
+
+
+const AdminUser = catchAsync(async (req, res, next) => {
+
+	const user= req.sessionUser
+
+	if (user.role != "admin") {
+		return next(
+			new AppError('you should be admin', 403)
+		);
+		}
+
+	next();
+});
+
+
+
+
+
+
 const protectUserAccount = (req, res, next) => {
 	// const { id } = req.params -> Alternative
 	const { sessionUser, user } = req;
@@ -57,4 +79,4 @@ const protectUserAccount = (req, res, next) => {
 	next();
 };
 
-module.exports = { protectSession, protectUserAccount };
+module.exports = { protectSession, protectUserAccount, AdminUser };

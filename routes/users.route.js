@@ -12,7 +12,7 @@ const {
 
 
 
-const {protectSession, protectUserAccount}= require('../midlewares/auth.middleware')
+const {protectSession, protectUserAccount,AdminUser}= require('../midlewares/auth.middleware')
 const {createUserValidators}= require('../midlewares/validators.middleware')
 const {userExists}= require('../midlewares/users.middleware')
 
