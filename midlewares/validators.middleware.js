@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 
-const { AppError } = require('../utils/appError');
+const { AppError } = require('../utils/app.error');
 
 const checkResult = (req, res, next) => {
 	const errors = validationResult(req);
@@ -43,4 +43,4 @@ const createMealValidators = [
 	checkResult,
 ]
 
-module.exports = { createUserValidators, createMealValidators };
+module.exports = { createUserValidators, createMealValidators, createReviewsAndRestaurant };

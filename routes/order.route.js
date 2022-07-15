@@ -2,9 +2,11 @@ const express = require('express');
 
 // Controllers
 const {
-	getOrdersById, 
+	getAllOrders,
+	//getOrdersById, 
 	createOrder, 
 	updateOrders,
+	//deleteOrders,
 	cancelledOrder
 } = require('../controlers/orders.controller');
 
@@ -24,7 +26,7 @@ orderRoute.use(protectSession)
 
 orderRoute.post('/', meatExist, totalprice, createOrder);
 
-orderRoute.get('/me', getOrdersById);
+orderRoute.get('/me', getAllOrders);
 
 orderRoute.patch('/:id',userExists, protectUserAccount, updateOrders);
 

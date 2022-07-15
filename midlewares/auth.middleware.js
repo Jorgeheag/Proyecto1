@@ -6,7 +6,7 @@ const { User } = require('../models/users.model');
 
 // Utils
 const { catchAsync } = require('../utils/catchAsync');
-const { AppError } = require('../utils/appError');
+const { AppError } = require('../utils/app.error');
 
 dotenv.config({ path: './config.env' });
 

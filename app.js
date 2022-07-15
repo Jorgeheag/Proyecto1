@@ -1,5 +1,14 @@
 const express = require('express');
 
+const {globalErrorHandler} = require('./controlers/error.controller');
+
+const {AppError} = require('./Utils/app.error');
+
+const {restaurantRouter} = require('./routes/restaurant.route');
+const {userRouter} = require('./routes/users.route');
+const {orderRoute} = require('./routes/order.route');
+const {mealRoute} = require('./routes/meal.route');
+
 
 const app = express();
 
@@ -8,9 +17,22 @@ app.use(express.json());
 
 
 //Endpoints
-app.use('/api/v1/restaurants',/*importarlas rutas*/);
-app.use('/api/v1/meals',/*importarlas rutas*/);
-app.use('/api/v1/orders',/*importarlas rutas*/);
+app.use('/api/v1/restaurants',restaurantRouter);
+app.use('/api/v1/meals',mealRoute);
+app.use('/api/v1/orders',orderRoute);
+app.use('/api/v1/users',userRouter);
+
+
+app.all('*', (req, res, next) => {
+    next(
+        new AppError(
+            `${req.method} ${req.originalUrl} not found in this server`,
+            404
+        )
+    );
+});
+
+app.use(globalErrorHandler);
 
 
 module.exports = { app };

@@ -2,7 +2,7 @@
 const { User } = require('../models/users.model');
 
 // Utils
-const { AppError } = require('../utils/appError');
+const { AppError } = require('../utils/app.error');
 const { catchAsync } = require('../utils/catchAsync');
 
 const userExists = catchAsync(async (req, res, next) => {
