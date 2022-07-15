@@ -17,16 +17,16 @@ db
 	.catch(err => console.log(err));
 
 //Unit models relations
-User.hasMany(Orders, {foreignkey: 'UserId', through: 'mealId'});
+User.hasMany(Orders, {foreignkey: 'UserId'});
 Orders.belongsTo(User);
 
-User.hasMany(Reviews, {foreignkey: 'UserId', through: 'restaurantId'});
+User.hasMany(Reviews, {foreignkey: 'UserId'});
 Reviews.belongsTo(User);
 
-Restaurants.hasMany(Reviews, {foreignkey: 'restaurantId', through: 'UserId'})
+Restaurants.hasMany(Reviews, {foreignkey: 'restaurantId' })
 Reviews.belongsTo(Restaurants);
 
-Meals.hasOne(Orders, {foreignkey: 'mealId', through: 'id'})
+Meals.hasOne(Orders, {foreignkey: 'mealId'})
 Orders.belongsTo(Meals);
 
 //revisar las relaciones
