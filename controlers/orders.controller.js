@@ -5,7 +5,7 @@ const { Meals } = require('../models/meals.model');
 // Utils
 const { catchAsync } = require('../Utils/catchAsync');
 //const { AppError } = require('../Utils/app.error');
-const { Meals } = require('../models/meals.model');
+
 
  const getAllOrders = catchAsync(async (req, res, next) => {
 	const orders = await Orders.findAll({
