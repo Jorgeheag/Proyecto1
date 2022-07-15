@@ -68,6 +68,7 @@ const deleteRestaurant = catchAsync(async (req, res, next) => {
 });
 
 const createComment = catchAsync(async(req, res, next)=>{
+	const { reviews } = req;
 	const { comment, rating } = req.body;
  //poner el id del restaurante 
 	const newCommet = await Reviews.create({
@@ -81,10 +82,34 @@ const createComment = catchAsync(async(req, res, next)=>{
 	});
 })
 
+const ubdateComment = catchAsync(async(req, res, next)=>{
+	const { comment, rating } = req.body;
+ 
+	await Reviews.update({
+		comment,
+		rating
+	});
+
+	res.status(200).json({
+		status: 'success',
+	});
+})
+
+const deleteReview = catchAsync(async (req, res, next) => {
+	const { reviews } = req;
+ //solo admin puede realizar esta accion
+	await reviews.update({ status: 'deleted' });
+
+	res.status(204).json({ status: 'success' });
+});
+
 module.exports = {
-	getAllMeals,
-	getMealsById, 
-	createMeat, 
-	updateMeal,
-	deleteMeal,
+	getAllRestaurants,
+	getRestaurantdById, 
+	createRestaurt, 
+	updateRestaurant,
+	deleteRestaurant,
+	createComment,
+	ubdateComment,
+	deleteReview
 }

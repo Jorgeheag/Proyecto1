@@ -17,6 +17,11 @@ const checkResult = (req, res, next) => {
 	next();
 };
 
+const createReviewsAndRestaurant = [
+	body('rating').isInt().withMessage('Name cannot be empty'),
+	checkResult,
+]
+
 const createUserValidators = [
 	body('name').notEmpty().withMessage('Name cannot be empty'),
 	body('email').isEmail().withMessage('Must provide a valid email'),
@@ -28,4 +33,4 @@ const createUserValidators = [
 	checkResult,
 ];
 
-module.exports = { createUserValidators };
+module.exports = { createUserValidators, createReviewsAndRestaurant };

@@ -8,13 +8,14 @@ const {
 	updateUser,
 	disableUser,
 	login
-} = require('../controllers/user.controller');
+} = require('../controlers/users.controller');
 
 
 
 const {protectSession, protectUserAccount,AdminUser}= require('../midlewares/auth.middleware')
 const {createUserValidators}= require('../midlewares/validators.middleware')
 const {userExists}= require('../midlewares/users.middleware')
+
 
 
 
@@ -30,9 +31,9 @@ userRouter.use(protectSession)
 userRouter.get('/orders', getAllUsers);
 userRouter.get('/orders/:id', getUsersById);
 
-userRouter.patch('/:id',userExists, protectUserAccount, updateUser);
+userRouter.patch('/:id',userExists,AdminUser, protectUserAccount, updateUser);
 
-userRouter.delete('/:id',userExists, protectUserAccount, disableUser);
+userRouter.delete('/:id',userExists, AdminUser, protectUserAccount, disableUser);
 
 
 
