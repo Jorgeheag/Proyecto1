@@ -33,4 +33,14 @@ const createUserValidators = [
 	checkResult,
 ];
 
-module.exports = { createUserValidators, createReviewsAndRestaurant };
+
+const createMealValidators = [
+	body('name').notEmpty().withMessage('Name cannot be empty'),
+	body('price')
+		.notEmpty()
+		.isInt()
+		.withMessage('price just can be a integer'),
+	checkResult,
+]
+
+module.exports = { createUserValidators, createMealValidators };
