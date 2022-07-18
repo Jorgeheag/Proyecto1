@@ -38,7 +38,7 @@ db
 	.catch(err => console.log(err));
 
     // Spin up server
-const PORT = process.env.PORT  //|| 4000;
+const PORT = process.env.DB_PORT  //|| 4000;
 app.listen(PORT, () => {
 	console.log(`Express app running on port: ${PORT}`);
 });
