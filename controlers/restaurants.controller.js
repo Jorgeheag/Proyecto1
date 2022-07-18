@@ -9,7 +9,7 @@ const { AppError } = require('../Utils/app.error');
 const getAllRestaurants = catchAsync(async (req, res, next) => {
 	const restaurants = await Restaurants.findAll({
 		where: { status: 'active' },
-		include: [{ model: Restaurants }], //revisar que modelo debe ir
+		include: [{ model: Reviews }], //revisar que modelo debe ir
 	});
 
 	res.status(200).json({

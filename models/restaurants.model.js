@@ -1,4 +1,4 @@
-const {db , DataTypes } = require('../utils/data.base');
+const {db , DataTypes } = require('../Utils/data.base');
 
 
 const Restaurants = db.define('restaurant', {
